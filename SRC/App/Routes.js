@@ -2,12 +2,12 @@ module.exports = (app, passport) => {
 
 	// index routes
 	app.get('/', (req, res) => {
-		res.render('index');
+		res.render('index.ejs');
 	});
 
 	//login view
-	app.get('/login', (req, res) => {
-		res.render('Login', {
+	app.get('/Login', (req, res) => {
+		res.render('Login.ejs', {
 			message: req.flash('loginMessage')
 		});
 	});
@@ -19,8 +19,8 @@ module.exports = (app, passport) => {
 	}));
 
 	// signup view
-	app.get('/signup', (req, res) => {
-		res.render('Registro', {
+	app.get('/Registro', (req, res) => {
+		res.render('Registro.ejs', {
 			message: req.flash('signupMessage')
 		});
 	});
@@ -32,8 +32,8 @@ module.exports = (app, passport) => {
 	}));
 
 	//profile view
-	app.get('/profile', isLoggedIn, (req, res) => {
-		res.render('Perfil', {
+	app.get('/Perfil', isLoggedIn, (req, res) => {
+		res.render('Perfil.ejs', {
 			user: req.user
 		});
 	});

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const morgan = require('morgan');
-const cookies = require('cookies-parser');
+const cookiesParser = require('cookies-parser');
 const passport = require('passport');
 const session = require('express-session');
 
@@ -31,7 +31,7 @@ app.set('view enngine', 'ejs')
 
 //Middleware
 app.use(morgan('dev'));
-app.use(cookieParser());
+//app.use(cookiesParser());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // required for passport
