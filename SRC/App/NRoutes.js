@@ -7,33 +7,33 @@ module.exports = (app, passport) => {
 
 	//login view
 	app.get('/login', (req, res) => {
-		res.render('login.ejs', {
+		res.render('Login.ejs', {
 			message: req.flash('loginMessage')
 		});
 	});
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect: '/profile',
-		failureRedirect: '/login',
+		successRedirect: '/Perfil',
+		failureRedirect: '/Login',
 		failureFlash: true
 	}));
 
 	// signup view
 	app.get('/signup', (req, res) => {
-		res.render('signup', {
+		res.render('Registro', {
 			message: req.flash('signupMessage')
 		});
 	});
 
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/profile',
-		failureRedirect: '/signup',
+		successRedirect: '/Perfil',
+		failureRedirect: '/Registro',
 		failureFlash: true // allow flash messages
 	}));
 
 	//profile view
 	app.get('/profile', isLoggedIn, (req, res) => {
-		res.render('profile', {
+		res.render('Perfil', {
 			user: req.user
 		});
 	});
