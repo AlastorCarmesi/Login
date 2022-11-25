@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Profile Page</title>
-    <%- include ('./Style/_head') %>
+    <%- include ('./Style/head') %>
   </head>
   <body>
     <div class="container">
       <header class="text-center">
-        <h1>Profile Page</h1>
+        <h1>Perfil</h1>
         <a href="/logout" class="btn btn-light btn-sm">
           Logout
         </a>
@@ -18,13 +18,12 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title"><span class="fa fa-user"></span> Local</h3>
+              <h3 class="card-title"><span class="fa fa-user"></span>Local</h3>
               <p>
-                <strong>id</strong> : <%= user._id %> <br>
-                <strong>email</strong> : <%= user.local.email %> <br>
-                <strong>password</strong> : <%= user.local.password %>
+                <strong>Email</strong> : <%= User.local.Email %> <br>
+                <strong>Cont</strong> : <%= User.local.Cont %>
               </p>
-              <a href="/logout" class="btn btn-light btn-sm">
+              <a href="/Login" class="btn btn-light btn-sm">
                 Logout
               </a>
             </div>

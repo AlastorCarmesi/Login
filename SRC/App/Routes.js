@@ -5,50 +5,43 @@ module.exports = (app, passport) => {
 		res.render('index.ejs');
 	});
 
-	//login view
+	//Vista de login
 	app.get('/Login', (req, res) => {
 		res.render('Login.ejs', {
 			message: req.flash('loginMessage')
 		});
 	});
 
-	app.post('/login', passport.authenticate('local-login', {
-		successRedirect: '/Perfil',
-		failureRedirect: '/Login',
+	app.post('/Login', passport.authenticate('local-login', {
+		successRedirect: '/Hola.ejs',
+		failureRedirect: '/Login.ejs',
 		failureFlash: true
 	}));
 
-	// signup view
+	// Vista de Registro
 	app.get('/Registro', (req, res) => {
 		res.render('Registro.ejs', {
 			message: req.flash('signupMessage')
 		});
 	});
 
-	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/Perfil',
+	app.post('/Registro', passport.authenticate('local-signup', {
+		successRedirect: '/Hola.ejs',
 		failureRedirect: '/Registro',
-		failureFlash: true // allow flash messages
+		failureFlash: true 
 	}));
 
-	//profile view
-	app.get('/Perfil', isLoggedIn, (req, res) => {
+	//Perfil
+	app.get('/Perfil',(req, res) => {
 		res.render('Perfil.ejs', {
-			user: req.user
+			User: req.User
 		});
 	});
 
-	// logout
+	// Cerrar sesion
 	app.get('/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');
 	});
 };
 
-function isLoggedIn (req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-
-	res.redirect('/');
-}

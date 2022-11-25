@@ -1,12 +1,9 @@
-const Schema = mongoose.Schema;
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs')
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     local:{
         Email: String,
         Cont: String,
-        NomUs: String,
-        Nom: String
     }
 });
 
@@ -18,4 +15,4 @@ userSchema.methods.ContraseñaVal = function (Cont){
     return bcrypt.compareSync(Cont, this.Cont);
 }
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model('valores',userSchema);

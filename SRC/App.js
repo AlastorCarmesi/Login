@@ -16,7 +16,7 @@ const session = require('express-session');
 const { url } = require('./Config/DB')
 mongoose.connect(url).then(bd => console.log('Exito al conectar')).catch(err => console.log(err))
 
-//require('./Config/passport')(passport);
+require('./Config/passport')(passport);
 
 //conexion con el servidor 
 app.listen(3000, () =>{
