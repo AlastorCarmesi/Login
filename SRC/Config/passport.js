@@ -41,17 +41,16 @@ module.exports = function (passport) {
   passwordField: 'Cont',
   passReqToCallback: true
  },
- function (req, Email, Cont, done){
-  valores.findOne({'local.Email': Email},
-  function (err, User){
+ function (req, Email, Cont, done) {
+  valores.findOne({'local.Email': Email}, function (err, User){
     if (err) {return done(err); }
-
-    if (!User){return done(null, false, req.flash('loginMessage','ocurrio un problema'));
+    if (!User){
+      return done(null, false, req.flash('loginMessage','ocurrio un problema'));
   }
   if(!User.ContraseñaVal(Cont)){
     return done(null, false, req.flash('loginMessage','Revisa la contraseña'));
   }
-  return done(nul, User);
+  return done(null, User);
   })
 }));
 

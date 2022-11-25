@@ -13,7 +13,7 @@ module.exports = (app, passport) => {
 	});
 
 	app.post('/Login', passport.authenticate('local-login', {
-		successRedirect: '/Hola.ejs',
+		successRedirect: '/Perfil.ejs',
 		failureRedirect: '/Login.ejs',
 		failureFlash: true
 	}));
@@ -26,13 +26,13 @@ module.exports = (app, passport) => {
 	});
 
 	app.post('/Registro', passport.authenticate('local-signup', {
-		successRedirect: '/Hola.ejs',
+		successRedirect: '/Perfil',
 		failureRedirect: '/Registro',
 		failureFlash: true 
 	}));
 
 	//Perfil
-	app.get('/Perfil',(req, res) => {
+	app.get('/Perfil', isLoggedIn,(req, res) => {
 		res.render('Perfil.ejs', {
 			User: req.User
 		});
@@ -43,5 +43,14 @@ module.exports = (app, passport) => {
 		req.logout();
 		res.redirect('/');
 	});
+
+
 };
+
+function isLoggedIn(req,res,next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	return res.redirect('/');
+}
 
